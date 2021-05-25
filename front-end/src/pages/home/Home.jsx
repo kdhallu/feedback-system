@@ -15,7 +15,7 @@ const Home = () => {
           <p>
             <a className="btn btn-primary m-2" href="/admin">Admin section</a>
             <a className="btn btn-secondary my-2" href="/select-employee">Employee Section</a>
-            <a className="btn btn-secondary my-2" href="#" onClick={createDummyEmployees} style={{ marginLeft: '5px'}}>Create Dummy employees</a>
+            <a className="btn btn-secondary my-2" href="#" onClick={createDummyEmployees} style={{ marginLeft: '5px'}}>Create Dummy employees for testing</a>
           </p>
         </div>
       </section>
