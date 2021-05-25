@@ -1,8 +1,9 @@
-let {Schema, model} = require('mongoose');
+let {Schema} = require('mongoose');
+const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-// set up a mongoose model and pass it using module.exports
-module.exports = model('Feedback', new Schema({
-  id: {
+const FeedbackSchema = new Schema({
+  feedbackId: {
     type: Number
   },
   addedBy:  String,
@@ -12,4 +13,7 @@ module.exports = model('Feedback', new Schema({
     type: Date,
     default: Date.now
   }
-}));
+});
+
+FeedbackSchema.plugin(AutoIncrement, {inc_field: 'feedbackId'});
+module.exports = mongoose.model('Feedback', FeedbackSchema);

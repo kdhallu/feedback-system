@@ -15,6 +15,9 @@ const EmployeeStore = Object.assign({}, BaseStore, {
     return _isWaiting
   },
 
+  getEmployeeNameById(empId) {
+    return _listOfEmployees.find(employee => employee.employeeId == empId)?.name;
+  },
 
   getListOfAllEmployees() {
     return _listOfEmployees;
@@ -22,7 +25,6 @@ const EmployeeStore = Object.assign({}, BaseStore, {
 
   dispatcherToken: AppDispatcher.register((payload) => {
     const action = payload.action;
-    console.log(action.actionType)
     switch (action.actionType) {
       case Constants.ActionTypes.GET_LIST_OF_ALL_EMPLOYEES_SUCCESS: {
         _listOfEmployees = action.response.data;
@@ -38,10 +40,11 @@ const EmployeeStore = Object.assign({}, BaseStore, {
       }
 
       case Constants.ActionTypes.GET_LIST_OF_ALL_EMPLOYEES_INITIATE:
-      case Constants.ActionTypes.ADD_EMPLOYEE_FEEDBACK_INITIATE: {
-        _isWaiting = false
+      case Constants.ActionTypes.EDIT_EMPLOYEE_INITIATE:
+      case Constants.ActionTypes.DELETE_EMPLOYEE_INITIATE:
+      case Constants.ActionTypes.CREATE_NEW_EMPLOYEE_INITIATE:
+        _isWaiting = true;
         EmployeeStore.emitChange();
-      }
 
     }
   })

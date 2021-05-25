@@ -12,34 +12,31 @@ const FeedbackActions = {
     FeedbackServices.getAllFeedbacks(successKey, failureKey)
   },
 
-  addFeedback(addedBy, receivedBy, feedback) {
+  addFeedback(addedBy, receivedBy, feedback, cb) {
     AppDispatcher.handleViewAction({
       actionType: Constants.ActionTypes.ADD_EMPLOYEE_FEEDBACK_INITIATE,
     });
     const successKey = Constants.ActionTypes.ADD_EMPLOYEE_FEEDBACK_SUCCESS;
     const failureKey = Constants.ActionTypes.ADD_EMPLOYEE_FEEDBACK_FAILURE;
-
     FeedbackServices.submitFeedback(successKey, failureKey, {
       addedBy,
       receivedBy,
       feedback
-    })
+    }, cb)
   },
 
-  edit(id, feedback) {
+  editFeedback(feedbackId, addedBy, receivedBy, feedback, cb) {
     AppDispatcher.handleViewAction({
       actionType: Constants.ActionTypes.EDIT_FEEDBACK_INITIATE,
     });
     const successKey = Constants.ActionTypes.EDIT_FEEDBACK_SUCCESS;
     const failureKey = Constants.ActionTypes.EDIT_FEEDBACK_FAILURE;
-
     FeedbackServices.editFeedback(successKey, failureKey, {
-      id,
-      feedback
-    })
+      feedbackId, addedBy, receivedBy, feedback
+    }, cb)
   },
 
-  deleteFeedback(id) {
+  deleteFeedback(id, cb) {
     AppDispatcher.handleViewAction({
       actionType: Constants.ActionTypes.DELETE_FEEDBACK_INITIATE,
     });
@@ -48,7 +45,7 @@ const FeedbackActions = {
 
     FeedbackServices.deleteFeedback(successKey, failureKey, {
       id
-    })
+    }, cb)
   }
 
 

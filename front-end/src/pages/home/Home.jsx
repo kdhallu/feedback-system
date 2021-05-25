@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <main role="main">
-      <section className="jumbotron text-center mb-0" style={{height: '100vh',}}>
+      <section className="jumbotron text-center mb-0" style={{height: '100vh'}}>
         <div className="container">
           <h1 className="jumbotron-heading">Feedback System</h1>
           <p className="lead text-muted">
@@ -15,7 +15,7 @@ const Home = () => {
           <p>
             <a className="btn btn-primary m-2" href="/admin">Admin section</a>
             <a className="btn btn-secondary my-2" href="/select-employee">Employee Section</a>
-            <a className="btn btn-secondary my-2" href="#" onClick={createDummyEmployees}>Create Dummy employees</a>
+            <a className="btn btn-secondary my-2" href="#" onClick={createDummyEmployees} style={{ marginLeft: '5px'}}>Create Dummy employees</a>
           </p>
         </div>
       </section>

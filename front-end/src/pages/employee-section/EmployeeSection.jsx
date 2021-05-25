@@ -35,18 +35,19 @@ class EmployeeSection extends React.Component {
     })
   }
 
-  selectEmployeeForFeedback(id, name) {
+  selectEmployeeForFeedback(employeeId, name) {
     this.setState({
       selectedEmployeeForFeedback: {
-        id, name
+        employeeId, name
       }
     })
     document.querySelectorAll('.dropdown-menu.show')[0].classList.remove("show");
   }
 
   onSubmitFeedback = () => {
-
-    FeedbackActions.addFeedback(this.activeEmployeeId, this.state.selectedEmployeeForFeedback.id, this.state.feedback);
+    const recipientId = this.state.selectedEmployeeForFeedback.employeeId;
+    const feedback = this.state.feedback;
+    FeedbackActions.addFeedback(this.activeEmployeeId, recipientId , feedback);
   }
 
   onFeedbackChange = (feedback) => {
@@ -89,8 +90,8 @@ class EmployeeSection extends React.Component {
                       {this.state.selectedEmployeeForFeedback ? this.state.selectedEmployeeForFeedback.name : 'Select Employee from dropdown'}
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      {this.state.employeesList.map(({name, id}, index) => <a
-                        onClick={() => this.selectEmployeeForFeedback(id, name)} key={`${id}-${index}-test`}
+                      {this.state.employeesList.map(({name, employeeId}, index) => <a
+                        onClick={() => this.selectEmployeeForFeedback(employeeId, name)} key={`${employeeId}-${index}-test`}
                         className="dropdown-item" href="#">{name}</a>)}
                     </div>
                   </div>

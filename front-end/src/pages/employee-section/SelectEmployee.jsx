@@ -35,7 +35,7 @@ class SelectEmployee extends Component {
                 Select User to login
               </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {this.state.employeesList.map(({ name, id }) => <a className="dropdown-item" href={`/employee-feedback?id=${id}`}>{ name }</a>)}
+                {this.state.employeesList.map(({ name, employeeId }) => <a className="dropdown-item" href={`/employee-feedback?id=${employeeId}`}>{ name }</a>)}
               </div>
             </div>
           </div>

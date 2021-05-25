@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const EmployeeSchema = new Schema({
-  id: {
+  employeeId: {
     type: Number
   },
   name: String,
@@ -13,5 +13,5 @@ const EmployeeSchema = new Schema({
   }
 });
 
-EmployeeSchema.plugin(AutoIncrement, {inc_field: 'id'});
+EmployeeSchema.plugin(AutoIncrement, {inc_field: 'employeeId'});
 module.exports = mongoose.model('Employee', EmployeeSchema);

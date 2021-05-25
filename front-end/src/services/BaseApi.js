@@ -13,12 +13,12 @@ const buildUrl = (endPoint) => {
 };
 
 
-const makeRequest = async ({method = 'get', url, successKey, failureKey, data, cb}) => {
+const makeRequest = async ({method = 'get', url, successKey, failureKey, data, cb = () => {}}) => {
   const headers = await getRequestHeaders();
   axios({url, data, method, headers})
     .then((response) => {
       const payload = {actionType: successKey, response};
-      AppDispatcher.handleServerAction(payload);
+      setTimeout(() => AppDispatcher.handleServerAction(payload), 500) // loader kick in :);
       cb();
     }).catch((response) => {
     const payload = {actionType: failureKey, response};

@@ -4,19 +4,15 @@ const db = require('../helpers/db-connector');
 const Employee = db.Employee;
 
 const staticData = [{
-  id: 1,
   name: 'ketan Dhallu',
   createdAt: new Date()
 }, {
-  id: 2,
   name: 'Bill clinton',
   createdAt: new Date()
 }, {
-  id: 3,
   name: 'George Bush',
   createdAt: new Date()
 }, {
-  id: 3,
   name: 'donald trump',
   createdAt: new Date()
 }];
@@ -49,9 +45,9 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/:employeeId', async (req, res) => {
   Employee.remove({
-    id: req.body.id
+    employeeId: req.params.employeeId
   }, function (err, user) {
     if (err)
       return console.error(err);
@@ -59,8 +55,8 @@ router.delete('/', async (req, res) => {
   });
 });
 
-router.put('/:id', async (req, res) => {
-  Employee.findOne({id: req.params.id})
+router.put('/:employeeId', async (req, res) => {
+  Employee.findOne({employeeId: req.params.employeeId})
     .then(employee => {
       employee.name = req.body.name;
       employee.markModified('name');

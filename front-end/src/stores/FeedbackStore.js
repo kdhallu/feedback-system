@@ -24,17 +24,13 @@ const FeedbackStore = Object.assign({}, BaseStore, {
         break;
       }
 
-      case Constants.ActionTypes.GET_LIST_OF_ALL_FEEDBACKS_INITIATE: {
+      case Constants.ActionTypes.EDIT_FEEDBACK_INITIATE:
+      case Constants.ActionTypes.DELETE_FEEDBACK_INITIATE:
+      case Constants.ActionTypes.GET_LIST_OF_ALL_FEEDBACKS_INITIATE:
         _isWaiting = true;
         FeedbackStore.emitChange();
         break;
-      }
 
-      case Constants.ActionTypes.CREATE_NEW_EMPLOYEE_INITIATE: {
-        _isWaiting = true;
-        FeedbackStore.emitChange();
-        break;
-      }
       case Constants.ActionTypes.CREATE_NEW_EMPLOYEE_SUCCESS: {
         _isWaiting = false;
         FeedbackStore.emitChange();
